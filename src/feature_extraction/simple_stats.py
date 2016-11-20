@@ -1,30 +1,32 @@
 
-def calculate_winner(home_points, away_points):
+def calculate_winner(data_frame):
     """
-    :param home_points: The total points of the home team
-    :param away_points: The total points of the away team
-
-    :return: Binary value: 1 if home team won else 0
+    :param data_frame:
+    :return:
     """
-    return 1 if home_points > away_points else 0
+    games_dict = dict()
+    for index, row in data_frame.iterrows():
+        games_dict[row["id"]] = 1 if row["home_points"] > row["away_points"] else 0
+    return games_dict
 
 
-def calculate_winner_range(home_points, away_points):
+def calculate_winner_range(data_frame):
     """
-    :param home_points: The total points of the home team
-    :param away_points: The total points of the away team
-
-    :return: Binary value: 1 if home team won else 0
+    :param data_frame:
+    :return:
     """
-    if 0 <= home_points - away_points <= 6:
-        return 1
-    elif 7 <= home_points - away_points <= 15:
-        return 2
-    elif home_points - away_points > 15:
-        return 3
-    elif 0 <= away_points - home_points <= 6:
-        return -1
-    elif 7 <= away_points - home_points <= 15:
-        return -2
-    elif away_points - home_points > 15:
-        return -3
+    games_dict = dict()
+    for index, row in data_frame.iterrows():
+        if 0 <= row["home_points"] - row["away_points"] <= 6:
+            games_dict[row["id"]] = 1
+        elif 7 <= row["home_points"] - row["away_points"] <= 15:
+            games_dict[row["id"]] = 2
+        elif row["home_points"] - row["away_points"] > 15:
+            games_dict[row["id"]] = 3
+        elif 0 <= row["away_points"] - row["home_points"] <= 6:
+            games_dict[row["id"]] = -1
+        elif 7 <= row["away_points"] - row["home_points"] <= 15:
+            games_dict[row["id"]] = -2
+        elif row["away_points"] - row["home_points"] > 15:
+            games_dict[row["id"]] = -3
+    return games_dict
