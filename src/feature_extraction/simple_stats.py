@@ -2,7 +2,7 @@
 def calculate_winner(data_frame):
     """
     :param data_frame: The loaded input file
-    :return:
+    :return: dict
     """
     games_dict = dict()
     for index, row in data_frame.iterrows():
@@ -13,7 +13,7 @@ def calculate_winner(data_frame):
 def calculate_winner_range(data_frame):
     """
     :param data_frame: The loaded input file
-    :return:
+    :return: dict
     """
     games_dict = dict()
     for index, row in data_frame.iterrows():
@@ -34,9 +34,11 @@ def calculate_winner_range(data_frame):
 
 def calculate_wins_percentage(data_frame, mode):
     """
+    This feature calculates the total home win percentage for the home team and the away win percentage for the away team,
+    regardless how the mode variable has set
     :param data_frame: The loaded input file
-    :param mode:
-    :return:
+    :param mode: string binary variable
+    :return: dict
     """
     total_games_dict, total_wins_dict, percentage_dict = dict(), dict(), dict()
     team_name = 'home_team' if mode == 'home' else 'away_team'
@@ -44,7 +46,7 @@ def calculate_wins_percentage(data_frame, mode):
         if row[team_name] not in total_games_dict:
             percentage_dict[row["id"]] = 0
         else:
-            percentage_dict[row["id"]] = float(total_wins_dict[row[team_name]])/float(total_games_dict[row[team_name]])
+            percentage_dict[row["id"]] = format(float(total_wins_dict[row[team_name]])/float(total_games_dict[row[team_name]]), '.2f')
 
         if row[team_name] in total_games_dict:
             total_games_dict[row[team_name]] += 1
@@ -63,3 +65,48 @@ def calculate_wins_percentage(data_frame, mode):
                 total_wins_dict[row[team_name]] = 1 if row['away_points'] > row['home_points'] else 0
 
     return percentage_dict
+
+
+def calculate_wins_percentage_overall(data_frame):
+    """
+    This feature calculates the total win percentage for both of the teams before the current game
+    :param data_frame: The loaded input file
+    :return:
+    """
+    total_games_dict, total_wins_dict, percentage_home_dict, percentage_away_dict = dict(), dict(), dict(), dict()
+    for index, row in data_frame.iterrows():
+
+        # add calculated percentage in the feature dictionary
+        if row['home_team'] not in total_games_dict:
+            percentage_home_dict[row["id"]] = 0
+        else:
+            percentage_home_dict[row["id"]] = format(float(total_wins_dict[row['home_team']]) / float(total_games_dict[row['home_team']]), '.2f')
+
+        if row['away_team'] not in total_games_dict:
+            percentage_away_dict[row["id"]] = 0
+        else:
+            percentage_away_dict[row["id"]] = format(float(total_wins_dict[row['away_team']]) / float(total_games_dict[row['away_team']]), '.2f')
+
+        # calculate teams' total games until now
+        if row['home_team'] in total_games_dict:
+            total_games_dict[row['home_team']] += 1
+        else:
+            total_games_dict[row['home_team']] = 1
+
+        if row['away_team'] in total_games_dict:
+            total_games_dict[row['away_team']] += 1
+        else:
+            total_games_dict[row['away_team']] = 1
+
+        # calculate teams' wins until now
+        if row['home_team'] in total_wins_dict:
+            total_wins_dict[row['home_team']] += 1 if row['home_points'] > row['away_points'] else 0
+        else:
+            total_wins_dict[row['home_team']] = 1 if row['home_points'] > row['away_points'] else 0
+
+        if row['away_team'] in total_wins_dict:
+            total_wins_dict[row['away_team']] += 1 if row['away_points'] > row['home_points'] else 0
+        else:
+            total_wins_dict[row['away_team']] = 1 if row['away_points'] > row['home_points'] else 0
+
+    return percentage_home_dict, percentage_away_dict

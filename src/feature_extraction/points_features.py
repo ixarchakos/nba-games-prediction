@@ -16,7 +16,7 @@ def calculate_average_points(data_frame, mode):
         if row[team_name] not in total_games_dict:
             percentage_dict[row["id"]] = 0
         else:
-            percentage_dict[row["id"]] = float(total_points_dict[row[team_name]]) / float(total_games_dict[row[team_name]])
+            percentage_dict[row["id"]] = format(float(total_points_dict[row[team_name]]) / float(total_games_dict[row[team_name]]), '.2f')
 
         if row[team_name] in total_games_dict:
             total_games_dict[row[team_name]] += 1
