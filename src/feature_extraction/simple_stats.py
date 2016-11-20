@@ -1,3 +1,28 @@
+def simple_stats(data_frame):
+    """
+    :return:
+    """
+    dict_list = list()
+    feature_name_list = list()
+
+    # win/loss and margin win/loss - y column
+    dict_list.append(calculate_winner(data_frame))
+    feature_name_list.append("calculate_winner")
+    dict_list.append(calculate_winner_range(data_frame))
+    feature_name_list.append("calculate_winner_range")
+
+    # wins percentage
+    dict_list.append(calculate_wins_percentage(data_frame, "home"))
+    feature_name_list.append("calculate_home_wins_percentage_home")
+    dict_list.append(calculate_wins_percentage(data_frame, "away"))
+    feature_name_list.append("calculate_away_wins_percentage_away")
+    dict_list.append(calculate_wins_percentage_overall(data_frame)[0])
+    feature_name_list.append("calculate_wins_percentage_overall_home")
+    dict_list.append(calculate_wins_percentage_overall(data_frame)[1])
+    feature_name_list.append("calculate_wins_percentage_overall_away")
+
+    return dict_list, feature_name_list
+
 
 def calculate_winner(data_frame):
     """

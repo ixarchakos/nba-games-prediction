@@ -1,3 +1,16 @@
+def point_features(data_frame):
+    dict_list = list()
+    feature_name_list = list()
+
+    # average points per game
+    dict_list.append(calculate_average_points(data_frame, "home"))
+    feature_name_list.append("calculate_average_home_points_home")
+    dict_list.append(calculate_average_points(data_frame, "away"))
+    feature_name_list.append("calculate_average_away_points_away")
+
+    return dict_list, feature_name_list
+
+
 def calculate_average_points(data_frame, mode):
     """
     :param data_frame: The loaded input file

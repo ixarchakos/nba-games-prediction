@@ -1,5 +1,5 @@
-from src.feature_extraction.simple_stats import calculate_winner_range, calculate_winner, calculate_wins_percentage, calculate_wins_percentage_overall
-from src.feature_extraction.points_features import calculate_average_points
+from src.feature_extraction.simple_stats import simple_stats
+from src.feature_extraction.points_features import point_features
 
 
 def feature_extraction(data_frame):
@@ -8,16 +8,11 @@ def feature_extraction(data_frame):
     :return:
     """
     dict_list = list()
-    # win/loss and margin win/loss - y column
-    dict_list.append(calculate_winner(data_frame))
-    dict_list.append(calculate_winner_range(data_frame))
+    feature_list = list()
 
-    # average points per game
-    dict_list.append(calculate_average_points(data_frame, "home"))
-    dict_list.append(calculate_average_points(data_frame, "away"))
+    dict_list.extend(simple_stats(data_frame)[0])
+    feature_list.extend(simple_stats(data_frame)[1])
+    dict_list.extend(point_features(data_frame)[0])
+    feature_list.extend(point_features(data_frame)[1])
 
-    # wins percentage
-    dict_list.append(calculate_wins_percentage(data_frame, "home"))
-    dict_list.append(calculate_wins_percentage(data_frame, "away"))
-
-    return dict_list
+    return dict_list, feature_list
