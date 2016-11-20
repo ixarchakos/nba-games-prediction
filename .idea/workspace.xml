@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tools/general_tools.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tools/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/feature_extraction/feature_extraction.py" afterPath="$PROJECT_DIR$/src/feature_extraction/feature_extraction.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/feature_extraction/points_features.py" afterPath="$PROJECT_DIR$/src/feature_extraction/points_features.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/feature_extraction/simple_stats.py" afterPath="$PROJECT_DIR$/src/feature_extraction/simple_stats.py" />
     </list>
     <ignored path="nba.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,20 +51,10 @@
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
-              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="general_tools.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tools/general_tools.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -227,14 +214,15 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/feature_extraction" />
-      <recent name="$PROJECT_DIR$/data" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/feature_extraction" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/tools" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/feature_extraction" />
+      <recent name="$PROJECT_DIR$/data" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -438,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479677527496</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[FIX] code formation&#10;">
+      <created>1479680424299</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1479680424299</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -477,7 +472,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[DEV] calculate_average_points feature&#10;[DEV] feature extraction file&#10;[FIX] number format to two decimals&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="[DEV] calculate_average_points feature&#10;[DEV] feature extraction file&#10;[FIX] number format to two decimals&#10;" />
+    <MESSAGE value="[FIX] code formation&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] code formation&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -618,6 +614,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/general_tools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -629,7 +633,7 @@
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
