@@ -1,5 +1,6 @@
 from src.feature_extraction.simple_stats import simple_stats
 from src.feature_extraction.points_features import points_features
+from src.feature_extraction.non_points_features import non_points_features
 
 
 def feature_extraction(data_frame):
@@ -14,5 +15,7 @@ def feature_extraction(data_frame):
     feature_list.extend(simple_stats(data_frame)[1])
     dict_list.extend(points_features(data_frame)[0])
     feature_list.extend(points_features(data_frame)[1])
+    dict_list.extend(non_points_features(data_frame)[0])
+    feature_list.extend(non_points_features(data_frame)[1])
 
     return dict_list, feature_list

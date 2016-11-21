@@ -3,32 +3,34 @@ def non_points_features(data_frame):
     feature_name_list = list()
 
     # average fouls per game
-    # dict_list.append(calculate_average_points(data_frame, "home"))
-    # feature_name_list.append("calculate_average_home_points_home")
-    # dict_list.append(calculate_average_points(data_frame, "away"))
-    # feature_name_list.append("calculate_average_away_points_away")
+    avg_fouls = averages(data_frame, 'personal_fouls_')
+    dict_list.append(avg_fouls[0])
+    feature_name_list.append("average_fouls_home")
+    dict_list.append(avg_fouls[1])
+    feature_name_list.append("average_fouls_away")
 
     return dict_list, feature_name_list
 
 
-def average_fouls(data_frame):
+def averages(data_frame, feature):
     """
     :param data_frame:
+    :param feature:
     :return:
     """
-    total_games_dict, total_fouls_dict, percentage_home_dict, percentage_away_dict = dict(), dict(), dict(), dict()
+    total_games_dict, total_dict, percentage_home_dict, percentage_away_dict = dict(), dict(), dict(), dict()
     for index, row in data_frame.iterrows():
 
         # add calculated percentage in the feature dictionary
         if row['home_team'] not in total_games_dict:
             percentage_home_dict[row["id"]] = 0
         else:
-            percentage_home_dict[row["id"]] = format(float(total_fouls_dict[row['home_team']]) / float(total_games_dict[row['home_team']]), '.2f')
+            percentage_home_dict[row["id"]] = format(float(total_dict[row['home_team']]) / float(total_games_dict[row['home_team']]), '.2f')
 
         if row['away_team'] not in total_games_dict:
             percentage_away_dict[row["id"]] = 0
         else:
-            percentage_away_dict[row["id"]] = format(float(total_fouls_dict[row['away_team']]) / float(total_games_dict[row['away_team']]), '.2f')
+            percentage_away_dict[row["id"]] = format(float(total_dict[row['away_team']]) / float(total_games_dict[row['away_team']]), '.2f')
 
         # calculate teams' total games until now
         for team_name in ['home_team', 'away_team']:
@@ -39,9 +41,9 @@ def average_fouls(data_frame):
 
         # calculate teams' wins until now
         for team_name in ['home_team', 'away_team']:
-            if row[team_name] in total_fouls_dict:
-                total_fouls_dict[row[team_name]] += row['personal_fouls_'+team_name.split('_')[0]]
+            if row[team_name] in total_dict:
+                total_dict[row[team_name]] += row[feature+team_name.split('_')[0]]
             else:
-                total_fouls_dict[row[team_name]] = row['personal_fouls_'+team_name.split('_')[0]]
+                total_dict[row[team_name]] = row[feature+team_name.split('_')[0]]
 
     return percentage_home_dict, percentage_away_dict
