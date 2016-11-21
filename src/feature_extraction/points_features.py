@@ -1,4 +1,4 @@
-def point_features(data_frame):
+def points_features(data_frame):
     dict_list = list()
     feature_name_list = list()
 
