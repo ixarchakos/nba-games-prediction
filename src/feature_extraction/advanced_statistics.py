@@ -1,34 +1,19 @@
-def non_points_features(data_frame):
+def advanced_statistics(data_frame):
     dict_list = list()
     feature_name_list = list()
 
-    # average fouls per game
-    avg_fouls = averages(data_frame, 'personal_fouls_')
-    dict_list.append(avg_fouls[0])
-    feature_name_list.append("average_fouls_home")
-    dict_list.append(avg_fouls[1])
-    feature_name_list.append("average_fouls_away")
-
-    # average fast break points per game
-    avg_fast_break_points = averages(data_frame, 'fast_break_points_')
-    dict_list.append(avg_fast_break_points[0])
-    feature_name_list.append("fast_break_points_home")
-    dict_list.append(avg_fast_break_points[1])
-    feature_name_list.append("fast_break_points_away")
-
-    # average points in paint per game
-    avg_points_in_paint = averages(data_frame, 'points_in_paint_')
-    dict_list.append(avg_points_in_paint[0])
-    feature_name_list.append("points_in_paint_home")
-    dict_list.append(avg_points_in_paint[1])
-    feature_name_list.append("points_in_paint_away")
-    return dict_list, feature_name_list
+    # average possessions per game
+    avg_possessions = possessions_overall(data_frame)
+    dict_list.append(avg_possessions[0])
+    feature_name_list.append("average_possessions_home")
+    dict_list.append(avg_possessions[1])
+    feature_name_list.append("average_possessions_away")
 
 
-def averages(data_frame, feature):
+def possessions_overall(data_frame):
     """
     :param data_frame:
-    :param feature:
+    :param mode:
     :return:
     """
     total_games_dict, total_dict, percentage_home_dict, percentage_away_dict = dict(), dict(), dict(), dict()
@@ -52,11 +37,15 @@ def averages(data_frame, feature):
             else:
                 total_games_dict[row[team_name]] = 1
 
-        # calculate teams' wins until now
+        # calculate teams' possessions until now
+
         for team_name in ['home_team', 'away_team']:
+            fga, orb, fta, to = 'fg_made_attempted_', 'offensive_rebounds_', 'ft_made_attempted_', 'turnovers_'
+            possessions = 0.96 * (row[fga + team_name.split('_')[0]].split('-')[1] - row[orb + team_name.split('_')[0]] +
+                                  (0.44 * row[fta + team_name.split('_')[0]].split('-')[1]) + row[to + team_name.split('_')[0]])
             if row[team_name] in total_dict:
-                total_dict[row[team_name]] += row[feature+team_name.split('_')[0]]
+                total_dict[row[team_name]] += possessions
             else:
-                total_dict[row[team_name]] = row[feature+team_name.split('_')[0]]
+                total_dict[row[team_name]] = possessions
 
     return percentage_home_dict, percentage_away_dict

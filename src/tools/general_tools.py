@@ -1,6 +1,5 @@
 from src.feature_extraction.feature_extraction import feature_extraction
 import csv
-import numpy as np
 
 
 def merge_dicts(data_frame):
