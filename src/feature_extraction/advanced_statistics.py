@@ -8,6 +8,7 @@ def advanced_statistics(data_frame):
     feature_name_list.append("average_possessions_home")
     dict_list.append(avg_possessions[1])
     feature_name_list.append("average_possessions_away")
+    return dict_list, feature_name_list
 
 
 def possessions_overall(data_frame):
@@ -41,8 +42,10 @@ def possessions_overall(data_frame):
 
         for team_name in ['home_team', 'away_team']:
             fga, orb, fta, to = 'fg_made_attempted_', 'offensive_rebounds_', 'ft_made_attempted_', 'turnovers_'
-            possessions = 0.96 * (row[fga + team_name.split('_')[0]].split('-')[1] - row[orb + team_name.split('_')[0]] +
-                                  (0.44 * row[fta + team_name.split('_')[0]].split('-')[1]) + row[to + team_name.split('_')[0]])
+
+            possessions = int(row[fga + team_name.split('_')[0]].split('-')[1]) - int(row[orb + team_name.split('_')[0]]) + \
+                          (0.475 * int(row[fta + team_name.split('_')[0]].split('-')[1])) + int(row[to + team_name.split('_')[0]])
+
             if row[team_name] in total_dict:
                 total_dict[row[team_name]] += possessions
             else:
