@@ -1,3 +1,6 @@
+from src.feature_extraction.points_features import calculate_average_points
+
+
 def advanced_statistics(data_frame):
     dict_list = list()
     feature_name_list = list()
@@ -15,13 +18,18 @@ def advanced_statistics(data_frame):
     dict_list.append(possessions_home_away(data_frame, 'away'))
     feature_name_list.append("average_away_possessions_away")
 
+    # average home and away offensive rating
+    dict_list.append(offensive_rating(data_frame, 'home'))
+    feature_name_list.append("home_offensive_rating_home")
+    dict_list.append(offensive_rating(data_frame, 'away'))
+    feature_name_list.append("away_offensive_rating_away")
+
     return dict_list, feature_name_list
 
 
 def possessions_overall(data_frame):
     """
     :param data_frame:
-    :param mode:
     :return:
     """
     total_games_dict, total_dict, percentage_home_dict, percentage_away_dict = dict(), dict(), dict(), dict()
@@ -51,7 +59,7 @@ def possessions_overall(data_frame):
             fga, orb, fta, to = 'fg_made_attempted_', 'offensive_rebounds_', 'ft_made_attempted_', 'turnovers_'
 
             possessions = int(row[fga + team_name.split('_')[0]].split('-')[1]) - int(row[orb + team_name.split('_')[0]]) + \
-                          (0.475 * int(row[fta + team_name.split('_')[0]].split('-')[1])) + int(row[to + team_name.split('_')[0]])
+                             (0.475 * int(row[fta + team_name.split('_')[0]].split('-')[1])) + int(row[to + team_name.split('_')[0]])
 
             if row[team_name] in total_dict:
                 total_dict[row[team_name]] += possessions
@@ -85,7 +93,7 @@ def possessions_home_away(data_frame, mode):
         fga, orb, fta, to = 'fg_made_attempted_', 'offensive_rebounds_', 'ft_made_attempted_', 'turnovers_'
 
         possessions = int(row[fga + team_name.split('_')[0]].split('-')[1]) - int(row[orb + team_name.split('_')[0]]) + \
-                      (0.475 * int(row[fta + team_name.split('_')[0]].split('-')[1])) + int(row[to + team_name.split('_')[0]])
+                         (0.475 * int(row[fta + team_name.split('_')[0]].split('-')[1])) + int(row[to + team_name.split('_')[0]])
 
         if row[team_name] in total_dict:
             total_dict[row[team_name]] += possessions
@@ -93,3 +101,21 @@ def possessions_home_away(data_frame, mode):
             total_dict[row[team_name]] = possessions
 
     return percentage_dict
+
+
+def offensive_rating(data_frame, mode):
+    """
+    This feature calculates the offensive rating for the home team and the offensive rating for the away team,
+    according to how the mode variable has set. It utilizes the features possessions_home_away and calculate_average_points
+    :param data_frame: The loaded input file
+    :param mode: string binary variable
+    :return: dict
+    """
+    off_rat = dict()
+    average_points = calculate_average_points(data_frame, mode)
+    for k, possessions in possessions_home_away(data_frame, mode).iteritems():
+        try:
+            off_rat[k] = format(float(average_points[k]) * 100 / float(possessions), '.2f')
+        except ZeroDivisionError:
+            off_rat[k] = 0.0
+    return off_rat
