@@ -8,6 +8,13 @@ def advanced_statistics(data_frame):
     feature_name_list.append("average_possessions_home")
     dict_list.append(avg_possessions[1])
     feature_name_list.append("average_possessions_away")
+
+    # average home and away possessions per game
+    dict_list.append(possessions_home_away(data_frame, 'home'))
+    feature_name_list.append("average_home_possessions_home")
+    dict_list.append(possessions_home_away(data_frame, 'away'))
+    feature_name_list.append("average_away_possessions_away")
+
     return dict_list, feature_name_list
 
 
@@ -52,3 +59,37 @@ def possessions_overall(data_frame):
                 total_dict[row[team_name]] = possessions
 
     return percentage_home_dict, percentage_away_dict
+
+
+def possessions_home_away(data_frame, mode):
+    """
+    This feature calculates the total home possessions per game for the home team and the away possessions per game for the away team,
+    according to how the mode variable has set
+    :param data_frame: The loaded input file
+    :param mode: string binary variable
+    :return: dict
+    """
+    total_games_dict, total_dict, percentage_dict = dict(), dict(), dict()
+    team_name = 'home_team' if mode == 'home' else 'away_team'
+    for index, row in data_frame.iterrows():
+        if row[team_name] not in total_games_dict:
+            percentage_dict[row["id"]] = 0
+        else:
+            percentage_dict[row["id"]] = format(float(total_dict[row[team_name]]) / float(total_games_dict[row[team_name]]), '.2f')
+
+        if row[team_name] in total_games_dict:
+            total_games_dict[row[team_name]] += 1
+        else:
+            total_games_dict[row[team_name]] = 1
+
+        fga, orb, fta, to = 'fg_made_attempted_', 'offensive_rebounds_', 'ft_made_attempted_', 'turnovers_'
+
+        possessions = int(row[fga + team_name.split('_')[0]].split('-')[1]) - int(row[orb + team_name.split('_')[0]]) + \
+                      (0.475 * int(row[fta + team_name.split('_')[0]].split('-')[1])) + int(row[to + team_name.split('_')[0]])
+
+        if row[team_name] in total_dict:
+            total_dict[row[team_name]] += possessions
+        else:
+            total_dict[row[team_name]] = possessions
+
+    return percentage_dict
