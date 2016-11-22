@@ -15,6 +15,7 @@ if __name__ == "__main__":
 
         df = pandas.read_csv('data/nba_games_' + year + '.csv')
         feature_matrix.update(merge_dicts(df))
+        print 'Data set: nba_games_' + year + ' [DONE]'
 
     print "*** The feature extraction ends after ", time() - start_time, " seconds ***"
     write_to_csv(feature_matrix)

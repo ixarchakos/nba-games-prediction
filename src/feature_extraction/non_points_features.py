@@ -22,6 +22,14 @@ def non_points_features(data_frame):
     feature_name_list.append("points_in_paint_home")
     dict_list.append(avg_points_in_paint[1])
     feature_name_list.append("points_in_paint_away")
+
+    # consecutive away games
+    cag = consecutive_away_games(data_frame)
+    dict_list.append(cag[0])
+    feature_name_list.append("consecutive_away_games_home")
+    dict_list.append(cag[1])
+    feature_name_list.append("consecutive_away_games_away")
+
     return dict_list, feature_name_list
 
 
@@ -60,3 +68,29 @@ def averages(data_frame, feature):
                 total_dict[row[team_name]] = row[feature+team_name.split('_')[0]]
 
     return percentage_home_dict, percentage_away_dict
+
+
+def consecutive_away_games(data_frame):
+    """
+    :param data_frame:
+    :return:
+    """
+    final_home_dict, final_away_dict, total_dict = dict(), dict(), dict()
+    for index, row in data_frame.iterrows():
+        if row['home_team'] not in total_dict:
+            final_home_dict[row["id"]] = 0
+        else:
+            final_home_dict[row["id"]] = total_dict[row['home_team']]
+
+        if row['away_team'] not in total_dict:
+            final_away_dict[row["id"]] = 0
+        else:
+            final_away_dict[row["id"]] = total_dict[row['away_team']]
+
+        total_dict[row['home_team']] = 0
+        if row['away_team'] not in total_dict:
+            total_dict[row['away_team']] = 1
+        else:
+            total_dict[row['away_team']] += 1
+
+    return final_home_dict, final_away_dict
