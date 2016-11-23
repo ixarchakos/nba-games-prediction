@@ -16,12 +16,26 @@ def non_points_features(data_frame):
     dict_list.append(avg_fast_break_points[1])
     feature_name_list.append("fast_break_points_away")
 
-    # average points in paint per game
-    avg_points_in_paint = averages(data_frame, 'points_in_paint_')
-    dict_list.append(avg_points_in_paint[0])
-    feature_name_list.append("points_in_paint_home")
-    dict_list.append(avg_points_in_paint[1])
-    feature_name_list.append("points_in_paint_away")
+    # average steals per game
+    avg_steals = averages(data_frame, 'steals_')
+    dict_list.append(avg_steals[0])
+    feature_name_list.append("average_steals_home")
+    dict_list.append(avg_steals[1])
+    feature_name_list.append("average_steals_away")
+
+    # average blocks per game
+    avg_blocks = averages(data_frame, 'blocks_')
+    dict_list.append(avg_blocks[0])
+    feature_name_list.append("average_blocks_home")
+    dict_list.append(avg_blocks[1])
+    feature_name_list.append("average_blocks_away")
+
+    # technical_fouls_
+    avg_technical_fouls = averages(data_frame, 'technical_fouls_')
+    dict_list.append(avg_technical_fouls[0])
+    feature_name_list.append("average_technical_fouls_home")
+    dict_list.append(avg_technical_fouls[1])
+    feature_name_list.append("average_technical_fouls_away")
 
     # consecutive away games
     cag = consecutive_away_games(data_frame)
