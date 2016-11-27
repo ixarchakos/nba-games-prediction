@@ -1,2 +1,2 @@
 # nba-games
-Predict NBA games results
+Predict results of NBA games 
