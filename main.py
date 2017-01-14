@@ -2,7 +2,8 @@ import pandas
 import multiprocessing
 
 from time import time
-from src.tools.general_tools import merge_dicts, write_to_csv
+from src.feature_extraction.feature_extraction import merge_dicts
+from src.tools.general_tools import  write_to_csv
 from src.machine_learning.classification import do_classification
 
 
