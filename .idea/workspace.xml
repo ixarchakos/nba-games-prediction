@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/nba_games_2002_2003.csv" afterPath="$PROJECT_DIR$/data/nba_games_2002_2003.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/nba_games_2003_2004.csv" afterPath="$PROJECT_DIR$/data/nba_games_2003_2004.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/nba_games_2007_2008.csv" afterPath="$PROJECT_DIR$/data/nba_games_2007_2008.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/nba_games_2011_2012.csv" afterPath="$PROJECT_DIR$/data/nba_games_2011_2012.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/nba_games_2015_2016.csv" afterPath="$PROJECT_DIR$/data/nba_games_2015_2016.csv" />
-    </list>
+    <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="" />
     <ignored path="nba.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +45,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+            <state relative-caret-position="414">
+              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -331,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488232528271</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="[FIX] small fix&#10;">
+      <created>1488233004600</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1488233004600</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -382,7 +382,8 @@
     <MESSAGE value="[DEV] multiprocessing feature extraction&#10;" />
     <MESSAGE value="[DEV] small changes&#10;" />
     <MESSAGE value="[DEV]  add 5 more years in the extraction process&#10;[DEV] return feature matrix(incomplete)&#10;[TEST] add basic graph processing(in comments)&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="[DEV]  add 5 more years in the extraction process&#10;[DEV] return feature matrix(incomplete)&#10;[TEST] add basic graph processing(in comments)&#10;&#10;" />
+    <MESSAGE value="[FIX] small fix&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] small fix&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -678,48 +679,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/nba_games_2002_2003.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="1189" column="176" selection-start-line="1189" selection-start-column="176" selection-end-line="1189" selection-end-column="176" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/nba_games_2003_2004.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="1189" column="177" selection-start-line="1189" selection-start-column="177" selection-end-line="1189" selection-end-column="177" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/nba_games_2007_2008.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="1230" column="181" selection-start-line="1230" selection-start-column="181" selection-end-line="1230" selection-end-column="181" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/nba_games_2011_2012.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="990" column="177" selection-start-line="990" selection-start-column="177" selection-end-line="990" selection-end-column="177" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/nba_games_2015_2016.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="1230" column="183" selection-start-line="1230" selection-start-column="183" selection-end-line="1230" selection-end-column="183" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+        <state relative-caret-position="414">
+          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
           <folding />
         </state>
       </provider>
