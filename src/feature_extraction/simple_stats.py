@@ -1,4 +1,4 @@
-def simple_stats(data_frame):
+def simple_stats(data_frame, total_years):
     """
     :return:
     """
@@ -8,7 +8,7 @@ def simple_stats(data_frame):
     # win/loss and margin win/loss - y column
     dict_list.append(calculate_winner(data_frame))
     feature_name_list.append("calculate_winner")
-    dict_list.append(calculate_winner_range(data_frame))
+    dict_list.append(calculate_winner_range(data_frame, total_years))
     feature_name_list.append("calculate_winner_range")
 
     # wins percentage
@@ -35,12 +35,14 @@ def calculate_winner(data_frame):
     return games_dict
 
 
-def calculate_winner_range(data_frame):
+def calculate_winner_range(data_frame, total_years):
     """
     :param data_frame: The loaded input file
     :return: dict
     """
     games_dict = dict()
+    teams = dict()
+    i = 0
     for index, row in data_frame.iterrows():
         if 0 <= row["home_points"] - row["away_points"] <= 6:
             games_dict[row["id"]] = 1
@@ -54,6 +56,22 @@ def calculate_winner_range(data_frame):
             games_dict[row["id"]] = -2
         elif row["away_points"] - row["home_points"] > 15:
             games_dict[row["id"]] = -3
+        if row["home_team"] not in teams:
+            teams[row["home_team"]] = i
+            i += 1
+        if row["away_team"] not in teams:
+            teams[row["away_team"]] = i
+            i += 1
+
+    #     with open("data/graph/games"+str(total_years)+".csv", "a") as text_file:
+    #         if games_dict[row["id"]] < 0:
+    #             text_file.write(str(teams[row["away_team"]])+','+str(teams[row["home_team"]])+',' + str(int(abs(games_dict[row["id"]])))+',WON\n')
+    #         else:
+    #             text_file.write(str(teams[row["home_team"]]) + ',' + str(teams[row["away_team"]]) + ',' + str(games_dict[row["id"]])+',WON\n')
+    # with open("data/graph/teams" + str(total_years) + ".csv", "a") as text_file:
+    #     for k, v in teams.iteritems():
+    #         text_file.write(str(v)+','+str(k)+'\n')
+
     return games_dict
 
 
