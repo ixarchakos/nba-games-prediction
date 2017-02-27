@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="[DEV] &#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/nba_games_2002_2003.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/nba_games_2003_2004.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/nba_games_2007_2008.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/nba_games_2011_2012.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/nba_games_2015_2016.csv" />
+    <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/machine_learning/feature_matrix.csv" afterPath="$PROJECT_DIR$/data/machine_learning/feature_matrix.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/feature_extraction/feature_extraction.py" afterPath="$PROJECT_DIR$/src/feature_extraction/feature_extraction.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/feature_extraction/simple_stats.py" afterPath="$PROJECT_DIR$/src/feature_extraction/simple_stats.py" />
     </list>
     <ignored path="nba.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -551,19 +542,26 @@
       <option name="project" value="LOCAL" />
       <updated>1484435096112</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[DEV]  add 5 more years in the extraction process&#10;[DEV] return feature matrix(incomplete)&#10;[TEST] add basic graph processing(in comments)&#10;&#10;">
+      <created>1488232500076</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1488232500076</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1215" height="923" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24773663" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26585367" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26585367" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -601,7 +599,8 @@
     <MESSAGE value="[DEV] consecutive_away_games feature&#10;" />
     <MESSAGE value="[DEV] multiprocessing feature extraction&#10;" />
     <MESSAGE value="[DEV] small changes&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="[DEV] small changes&#10;" />
+    <MESSAGE value="[DEV]  add 5 more years in the extraction process&#10;[DEV] return feature matrix(incomplete)&#10;[TEST] add basic graph processing(in comments)&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[DEV]  add 5 more years in the extraction process&#10;[DEV] return feature matrix(incomplete)&#10;[TEST] add basic graph processing(in comments)&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
