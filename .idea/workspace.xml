@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="" />
+    <list default="true" id="f1ca582d-b657-4459-b55f-87cf24c20a6f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/nba_games_2003_2004.csv" afterPath="$PROJECT_DIR$/data/nba_games_2003_2004.csv" />
+    </list>
     <ignored path="nba.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,8 +47,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+            <state relative-caret-position="432">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -61,10 +63,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/data/nba_games_2002_2003.csv" />
-        <option value="$PROJECT_DIR$/data/nba_games_2003_2004.csv" />
         <option value="$PROJECT_DIR$/data/nba_games_2007_2008.csv" />
         <option value="$PROJECT_DIR$/data/nba_games_2011_2012.csv" />
         <option value="$PROJECT_DIR$/data/nba_games_2015_2016.csv" />
+        <option value="$PROJECT_DIR$/data/nba_games_2003_2004.csv" />
       </list>
     </option>
   </component>
@@ -685,14 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/nba_games_2003_2004.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="1189" column="177" selection-start-line="1189" selection-start-column="177" selection-end-line="1189" selection-end-column="177" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/nba_games_2007_2008.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -717,10 +711,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/nba_games_2003_2004.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="1189" column="177" selection-start-line="1189" selection-start-column="177" selection-end-line="1189" selection-end-column="177" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+        <state relative-caret-position="432">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding />
         </state>
       </provider>
