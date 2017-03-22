@@ -1,13 +1,15 @@
 import csv
 
 
-def write_to_csv(final_dictionary):
+def write_to_csv(final_dictionary, header):
     """
     :param final_dictionary:
+    :param header:
     :return:
     """
     with open("data/machine_learning/feature_matrix.csv", 'wb') as outfile:
         writer = csv.writer(outfile)
+        writer.writerow(header)
         for k, v in final_dictionary.iteritems():
             l = list()
             l.append(k)
