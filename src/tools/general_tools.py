@@ -7,8 +7,9 @@ def write_to_csv(final_dictionary, header):
     :param header:
     :return:
     """
-    with open("data/machine_learning/feature_matrix.csv", 'wb') as outfile:
+    with open("data/machine_learning/feature_matrix.csv", 'w+') as outfile:
         writer = csv.writer(outfile)
+        writer.writerow(header)
         for k, v in final_dictionary.items():
             l = list()
             l.append(k)

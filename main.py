@@ -28,7 +28,7 @@ if __name__ == "__main__":
         feature_matrix.update(val[0])
         header = val[1]
 
-        print("*** The feature extraction ends after ", time() - start_time, " seconds ***")
+    print("*** The feature extraction ends after ", time() - start_time, " seconds ***")
     write_to_csv(feature_matrix, header)
     print("*** Start classification ***")
     do_classification(feature_matrix)
