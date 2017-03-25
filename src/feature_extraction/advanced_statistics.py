@@ -113,7 +113,7 @@ def offensive_rating(data_frame, mode):
     """
     off_rat = dict()
     average_points = calculate_average_points(data_frame, mode)
-    for k, possessions in possessions_home_away(data_frame, mode).iteritems():
+    for k, possessions in possessions_home_away(data_frame, mode).items():
         try:
             off_rat[k] = format(float(average_points[k]) * 100 / float(possessions), '.2f')
         except ZeroDivisionError:
