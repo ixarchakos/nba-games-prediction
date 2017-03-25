@@ -6,7 +6,7 @@ def graph_statistics(data_frame):
     feature_name_list = list()
 
     # eigenvector centrality for home and away teams
-    centrality = eigenvector_centrality(data_frame)
+    centrality = centrality_measures(data_frame)
     dict_list.append(centrality['eigenvector_home'])
     feature_name_list.append("eigenvector_centrality_home")
     dict_list.append(centrality['eigenvector_away'])
@@ -20,7 +20,7 @@ def graph_statistics(data_frame):
     return dict_list, feature_name_list
 
 
-def eigenvector_centrality(data_frame):
+def centrality_measures(data_frame):
     centrality_metrics, team_id_dict, eigenvector_home, eigenvector_away, closeness_home, closeness_away \
         = dict(), dict(), dict(), dict(), dict(), dict()
     for index, row in data_frame.iterrows():
@@ -67,4 +67,3 @@ def eigenvector_centrality(data_frame):
     centrality_metrics['closeness_away'] = closeness_away
 
     return centrality_metrics
-
