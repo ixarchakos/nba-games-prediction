@@ -11,7 +11,7 @@ def process(total_years):
     :param total_years: dict, required
     :return:
     """
-    return merge_dicts(read_csv('data/nba_games_' + total_years + '.csv'), total_years)
+    return merge_dicts(read_csv('data/nba_games_' + total_years + '.csv'))
 
 
 if __name__ == "__main__":
@@ -32,4 +32,3 @@ if __name__ == "__main__":
     write_to_csv(feature_matrix, header)
     print("*** Start classification ***")
     do_classification(feature_matrix)
-

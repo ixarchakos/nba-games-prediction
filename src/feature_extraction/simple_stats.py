@@ -1,4 +1,4 @@
-def simple_stats(data_frame, total_years):
+def simple_stats(data_frame):
     """
     :return:
     """
@@ -8,7 +8,7 @@ def simple_stats(data_frame, total_years):
     # win/loss and margin win/loss - y column
     dict_list.append(calculate_winner(data_frame))
     feature_name_list.append("calculate_winner")
-    dict_list.append(calculate_winner_range(data_frame, total_years))
+    dict_list.append(calculate_winner_range(data_frame))
     feature_name_list.append("calculate_winner_range")
 
     # wins percentage
@@ -35,7 +35,7 @@ def calculate_winner(data_frame):
     return games_dict
 
 
-def calculate_winner_range(data_frame, total_years):
+def calculate_winner_range(data_frame):
     """
     :param data_frame: The loaded input file
     :return: dict
@@ -62,15 +62,6 @@ def calculate_winner_range(data_frame, total_years):
         if row["away_team"] not in teams:
             teams[row["away_team"]] = i
             i += 1
-
-    #     with open("data/graph/games"+str(total_years)+".csv", "a") as text_file:
-    #         if games_dict[row["id"]] < 0:
-    #             text_file.write(str(teams[row["away_team"]])+','+str(teams[row["home_team"]])+',' + str(int(abs(games_dict[row["id"]])))+',WON\n')
-    #         else:
-    #             text_file.write(str(teams[row["home_team"]]) + ',' + str(teams[row["away_team"]]) + ',' + str(games_dict[row["id"]])+',WON\n')
-    # with open("data/graph/teams" + str(total_years) + ".csv", "a") as text_file:
-    #     for k, v in teams.iteritems():
-    #         text_file.write(str(v)+','+str(k)+'\n')
 
     return games_dict
 

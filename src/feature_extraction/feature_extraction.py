@@ -5,17 +5,16 @@ from src.feature_extraction.points_features import points_features
 from src.feature_extraction.simple_stats import simple_stats
 
 
-def feature_extraction(data_frame, total_years):
+def feature_extraction(data_frame):
     """
     :param data_frame: The loaded input file
-    :param total_years:
     :return:
     """
     dict_list = list()
     feature_list = list()
 
-    dict_list.extend(simple_stats(data_frame, total_years)[0])
-    feature_list.extend(simple_stats(data_frame, total_years)[1])
+    dict_list.extend(simple_stats(data_frame)[0])
+    feature_list.extend(simple_stats(data_frame)[1])
     dict_list.extend(points_features(data_frame)[0])
     feature_list.extend(points_features(data_frame)[1])
     dict_list.extend(non_points_features(data_frame)[0])
@@ -29,9 +28,9 @@ def feature_extraction(data_frame, total_years):
     return dict_list, feature_list
 
 
-def merge_dicts(data_frame, total_years):
+def merge_dicts(data_frame):
     final_dict = dict()
-    extraction = feature_extraction(data_frame, total_years)
+    extraction = feature_extraction(data_frame)
     for d in extraction[0]:
         for key, value in d.items():
             final_dict.setdefault(key, []).append(value)
