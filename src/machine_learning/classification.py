@@ -7,9 +7,10 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import scale
+from src.tools.sampling import k_fold_sample_data_set, random_sample_data_set
 from sknn.mlp import Classifier, Layer
 from xgboost.sklearn import XGBClassifier
+from multiprocessing import cpu_count
 
 
 def do_classification(feature_matrix):
@@ -19,24 +20,42 @@ def do_classification(feature_matrix):
     """
     type_of_classification = input("1: K-fold classification \n 2: Left-out classification")
     if type_of_classification == 1:
-        k_fold_classification()
+        k_fold_classification(feature_matrix)
     elif type_of_classification == 2:
-        left_out_classification()
+        left_out_classification(feature_matrix)
     else:
         print("Wrong type of classification selected!")
         exit(-1)
     return feature_matrix
 
 
-def left_out_classification():
+def left_out_classification(feature_matrix):
+    """
+    :param feature_matrix:
+    :return:
+    """
     return 0
 
 
-def k_fold_classification():
+def k_fold_classification(x, y, folds, classifier_name='XGB', cut_off_boundary=0.8, bootstrap=False):
+    x_train_list, y_train_list, x_test_list, y_test_list = k_fold_sample_data_set(x, y, folds)
+    for j in range(0, folds, 1):
+        # split data set in train and test set
+        if bootstrap:
+            x_train, y_train, x_test, y_test = random_sample_data_set(x, y, folds)
+        else:
+            x_train = x_train_list[j]
+            y_train = y_train_list[j]
+            x_test = x_test_list[j]
+            y_test = y_test_list[j]
+
+        model = model_fitting(x_train, y_train, classifier_name)
+        predicted_probabilities = model.predict_proba(x_test)
+        predicted_labels = [0 if r[0] > cut_off_boundary else 1 for r in predicted_probabilities]
     return 0
 
 
-def model_fitting(train_set, train_labels, classifier_name, n_jobs):
+def model_fitting(train_set, train_labels, classifier_name, n_jobs=cpu_count()):
     """
     The fitting process with sklearn algorithms.
     :param train_set: numpy array, required
@@ -44,7 +63,7 @@ def model_fitting(train_set, train_labels, classifier_name, n_jobs):
     :param classifier_name: string, required
     :param n_jobs: integer, required
     :return: object
-                - Fit classifier model according to the given training data
+        - Fit classifier model according to the given training data
     """
     classifier_list = {"svm_linear": SVC(probability=True, kernel='linear', C=1.0),
                        "svm_poly": SVC(probability=True, kernel='poly', C=1.0),
