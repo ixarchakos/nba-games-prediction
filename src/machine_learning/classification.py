@@ -59,6 +59,7 @@ def k_fold_classification(x, y, folds, classifier_name='logistic_regression', bo
             y_train = y_train_list[j]
             x_test = x_test_list[j]
             y_test = y_test_list[j]
+        x_train, x_test = scale_sets(x_train, x_test, classifier_name)
         model = model_fitting(x_train, y_train, classifier_name)
         predicted_labels = model.predict(x_test)
         print(metrics.accuracy_score(y_test, predicted_labels))
@@ -101,3 +102,20 @@ def model_fitting(train_set, train_labels, classifier_name, n_jobs=cpu_count()):
                                             objective='binary:logistic', reg_lambda=1, scale_pos_weight=1, seed=0, silent=True, subsample=1)}
     return classifier_list[classifier_name].fit(train_set, train_labels)
 
+
+def scale_sets(x_train, x_test, classifier_name):
+    """
+    :param x_train: ndarray, required
+            - The train data of the feature matrix
+    :param x_test: ndarray, required
+            - The test data of the feature matrix
+    :param classifier_name: string, optional
+            - The name of the selected classifier
+    :return: ndarray
+    """
+    # scaling leads to poorer performance in the case of random forests, xgb, etc.
+    if classifier_name not in ["random_forests", "XGB", "GBC"]:
+        # x_train, x_test are expected to be numpy arrays. Simple conditions such as if x_train will raise a ValueError.
+        x_train = scale(x_train) if x_train is not None else x_train
+        x_test = scale(x_test) if x_test is not None else x_test
+    return x_train, x_test
