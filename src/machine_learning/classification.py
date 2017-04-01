@@ -1,3 +1,4 @@
+from multiprocessing import cpu_count
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn import metrics
 from sklearn.svm import SVC, LinearSVC
@@ -6,10 +7,10 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from src.machine_learning.performance import export_model_performance
 from src.tools.sampling import k_fold_sample_data_set, random_sample_data_set
 from sknn.mlp import Classifier, Layer
 from xgboost.sklearn import XGBClassifier
-from multiprocessing import cpu_count
 
 
 def do_classification(feature_matrix, type_of_classification=None, num_of_folds=None):
@@ -46,6 +47,7 @@ def left_out_classification(feature_matrix):
 
 def k_fold_classification(x, y, folds, classifier_name='random_forests', bootstrap=False):
     x_train_list, y_train_list, x_test_list, y_test_list = k_fold_sample_data_set(x, y, folds)
+    model_performance_dict = dict()
     total_accuracy = 0
     for j in range(0, folds, 1):
         # split data set in train and test set
@@ -59,10 +61,9 @@ def k_fold_classification(x, y, folds, classifier_name='random_forests', bootstr
 
         model = model_fitting(x_train, y_train, classifier_name)
         predicted_labels = model.predict(x_test)
-        accuracy = metrics.accuracy_score(y_test, predicted_labels)
-        total_accuracy += accuracy
-        print(accuracy)
-    print("Accuracy {0}".format(float(total_accuracy)/float(folds)))
+        total_accuracy += metrics.accuracy_score(y_test, predicted_labels)
+    model_performance_dict["accuracy"] = float(total_accuracy)/float(folds)
+    export_model_performance(model_performance_dict)
 
 
 def model_fitting(train_set, train_labels, classifier_name, n_jobs=cpu_count()):
