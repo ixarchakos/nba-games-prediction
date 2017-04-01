@@ -7,6 +7,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import scale
 from src.machine_learning.performance import export_model_performance
 from src.tools.sampling import k_fold_sample_data_set, random_sample_data_set
 from sknn.mlp import Classifier, Layer
@@ -45,7 +46,7 @@ def left_out_classification(feature_matrix):
     return 0
 
 
-def k_fold_classification(x, y, folds, classifier_name='random_forests', bootstrap=False):
+def k_fold_classification(x, y, folds, classifier_name='logistic_regression', bootstrap=False):
     x_train_list, y_train_list, x_test_list, y_test_list = k_fold_sample_data_set(x, y, folds)
     model_performance_dict = dict()
     total_accuracy = 0
@@ -58,9 +59,9 @@ def k_fold_classification(x, y, folds, classifier_name='random_forests', bootstr
             y_train = y_train_list[j]
             x_test = x_test_list[j]
             y_test = y_test_list[j]
-
         model = model_fitting(x_train, y_train, classifier_name)
         predicted_labels = model.predict(x_test)
+        print(metrics.accuracy_score(y_test, predicted_labels))
         total_accuracy += metrics.accuracy_score(y_test, predicted_labels)
     model_performance_dict["accuracy"] = float(total_accuracy)/float(folds)
     export_model_performance(model_performance_dict)
@@ -99,3 +100,4 @@ def model_fitting(train_set, train_labels, classifier_name, n_jobs=cpu_count()):
                                             max_depth=10, min_child_weight=2, missing=None, n_estimators=100, nthread=n_jobs, reg_alpha=0,
                                             objective='binary:logistic', reg_lambda=1, scale_pos_weight=1, seed=0, silent=True, subsample=1)}
     return classifier_list[classifier_name].fit(train_set, train_labels)
+

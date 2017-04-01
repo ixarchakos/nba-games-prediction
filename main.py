@@ -4,7 +4,6 @@ from src.feature_extraction.feature_extraction import merge_dicts
 from src.tools.general_tools import write_to_csv
 from src.machine_learning.classification import do_classification
 from time import time
-import pandas as pd
 
 
 def process(total_years):
@@ -35,10 +34,11 @@ if __name__ == "__main__":
         header.insert(0, "id")
         write_to_csv(feature_matrix, header)
         print("*** Start classification ***")
+        feature_matrix = read_csv('data/machine_learning/feature_matrix.csv', sep=',', header=0)
         do_classification(feature_matrix, "1", "10")
     elif selected_process == "2":
         print("*** Start classification ***")
-        feature_matrix = pd.read_csv('data/machine_learning/feature_matrix.csv', sep=',', header=0)
+        feature_matrix = read_csv('data/machine_learning/feature_matrix.csv', sep=',', header=0)
         do_classification(feature_matrix, "1", "10")
     else:
         print("Wrong process selected!")
