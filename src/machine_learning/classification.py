@@ -1,4 +1,3 @@
-from sklearn.externals import joblib
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn import metrics
 from sklearn.svm import SVC, LinearSVC
@@ -13,15 +12,22 @@ from xgboost.sklearn import XGBClassifier
 from multiprocessing import cpu_count
 
 
-def do_classification(feature_matrix):
+def do_classification(feature_matrix, type_of_classification=None, num_of_folds=None):
     """
     :param feature_matrix:
+    :param type_of_classification:
+    :param num_of_folds:
     :return:
     """
-    type_of_classification = input("1: K-fold classification \n 2: Left-out classification")
-    if type_of_classification == 1:
-        k_fold_classification(feature_matrix)
-    elif type_of_classification == 2:
+    x = feature_matrix.values[:, 3:]
+    y = feature_matrix.values[:, 1]
+    if type_of_classification is None:
+        type_of_classification = input("1: K-fold classification\n2: Left-out classification\n")
+    if type_of_classification == "1":
+        if num_of_folds is None:
+            num_of_folds = input("Please set the number of folds.\n")
+        k_fold_classification(x, y, int(num_of_folds))
+    elif type_of_classification == "2":
         left_out_classification(feature_matrix)
     else:
         print("Wrong type of classification selected!")
@@ -34,11 +40,13 @@ def left_out_classification(feature_matrix):
     :param feature_matrix:
     :return:
     """
+    print(feature_matrix)
     return 0
 
 
-def k_fold_classification(x, y, folds, classifier_name='XGB', cut_off_boundary=0.8, bootstrap=False):
+def k_fold_classification(x, y, folds, classifier_name='random_forests', bootstrap=False):
     x_train_list, y_train_list, x_test_list, y_test_list = k_fold_sample_data_set(x, y, folds)
+    total_accuracy = 0
     for j in range(0, folds, 1):
         # split data set in train and test set
         if bootstrap:
@@ -50,9 +58,11 @@ def k_fold_classification(x, y, folds, classifier_name='XGB', cut_off_boundary=0
             y_test = y_test_list[j]
 
         model = model_fitting(x_train, y_train, classifier_name)
-        predicted_probabilities = model.predict_proba(x_test)
-        predicted_labels = [0 if r[0] > cut_off_boundary else 1 for r in predicted_probabilities]
-    return 0
+        predicted_labels = model.predict(x_test)
+        accuracy = metrics.accuracy_score(y_test, predicted_labels)
+        total_accuracy += accuracy
+        print(accuracy)
+    print("Accuracy {0}".format(float(total_accuracy)/float(folds)))
 
 
 def model_fitting(train_set, train_labels, classifier_name, n_jobs=cpu_count()):
@@ -71,7 +81,7 @@ def model_fitting(train_set, train_labels, classifier_name, n_jobs=cpu_count()):
                        "linear_svc": LinearSVC(penalty='l2', loss='squared_hinge', dual=True, tol=0.1, C=1.0, multi_class='ovr', fit_intercept=True,
                                                intercept_scaling=1, random_state=None, max_iter=3000),
                        "knn": KNeighborsClassifier(n_neighbors=100, weights='distance', leaf_size=30, n_jobs=n_jobs),
-                       "random_forests": RandomForestClassifier(n_estimators=350, criterion='entropy', max_features=12, min_samples_split=2,
+                       "random_forests": RandomForestClassifier(n_estimators=350, criterion='entropy', min_samples_split=2,
                                                                 min_samples_leaf=1, max_leaf_nodes=600, n_jobs=n_jobs),
                        "logistic_regression": LogisticRegression(penalty='l2', dual=False, tol=0.0001, C=2.4, fit_intercept=True, intercept_scaling=1,
                                                                  random_state=None, solver='liblinear', max_iter=1000, multi_class='ovr',
